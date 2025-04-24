@@ -17,8 +17,8 @@ const MainPage = async ({
   });
 
   return (
-    <div className="h-svh overflow-hidden bg-gray-100 p-2 md:p-4">
-      <Card className="bg-white p-4 shadow-md">
+    <div className="h-full bg-gray-100 p-2 md:p-4">
+      <Card className="h-full bg-white p-4 shadow-md">
         <DateRangeFilter />
         <IncomeChart data={data} />
       </Card>

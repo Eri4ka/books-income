@@ -11,7 +11,7 @@ import {
 } from '@/shared/ui/chart';
 import { format, parseISO } from 'date-fns';
 import { ru } from 'date-fns/locale/ru';
-import { Bar, BarChart, CartesianGrid, LabelList, XAxis, YAxis } from 'recharts';
+import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from 'recharts';
 
 const chartConfig = {
   income: {
@@ -31,21 +31,17 @@ export const IncomeChart = ({ data }: Props) => {
   };
 
   return (
-    <div className="h-full w-full">
-      <ChartContainer config={chartConfig}>
-        <BarChart data={data}>
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="date" tickFormatter={formatDate} tick={{ fontSize: 12 }} minTickGap={1} />
-          <YAxis />
-          <ChartTooltip
-            content={<ChartTooltipContent indicator="dot" labelFormatter={formatDate} />}
-          />
-          <ChartLegend content={<ChartLegendContent />} />
-          <Bar dataKey="income" fill="var(--color-income)" radius={[4, 4, 0, 0]}>
-            <LabelList position="top" offset={12} className="fill-foreground" fontSize={12} />
-          </Bar>
-        </BarChart>
-      </ChartContainer>
-    </div>
+    <ChartContainer config={chartConfig} className="overflow-hidden">
+      <BarChart data={data}>
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis dataKey="date" tickFormatter={formatDate} tick={{ fontSize: 12 }} minTickGap={1} />
+        <YAxis />
+        <ChartTooltip
+          content={<ChartTooltipContent indicator="dot" labelFormatter={formatDate} />}
+        />
+        <ChartLegend content={<ChartLegendContent />} />
+        <Bar dataKey="income" fill="var(--color-income)" radius={[4, 4, 0, 0]} />
+      </BarChart>
+    </ChartContainer>
   );
 };
